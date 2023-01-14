@@ -7,8 +7,51 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    <script>
-        
-    </script>
+<script>
+let win
+let pscore = 0
+let cscore = 0
+let maxrounds = 5
+
+
+console.log("Welcome to a game of Rock-Paper-Scissors!\nGame Mode: 5 Rounds.")
+
+
+for(let i = 1; i < maxrounds+1; i++){
+    console.log("\nRound:"+i)
+    if(i === maxrounds){console.log("Final Round!")}
+    let playerchoice = prompt("Make your choice.").toLowerCase()
+    play(playerchoice, getComputerChoice())
+
+    if(win != undefined && win != "none"){
+        console.log(win+" has won this round!")
+    }else if(win === "none"){console.log("This round ended in a tie!")}
+
+    if(i === 5){
+        if(pscore === cscore){console.log("\nThe game ended in a tie!")}
+        else if(pscore > cscore){console.log("\nPlayer has won the game!")}
+        else if(pscore < cscore){console.log("\nComputer has won the game!")}
+        else{console.log("\nUhh?")}
+    }
+}
+
+function getComputerChoice(){
+   let choices = ["rock", "paper", "scissors"]
+   let index = Math.floor(Math.random()*choices.length)
+   return choices[index]
+}
+
+function play(p, c){
+    if(p === c){win = "none"}
+    else if(p === "rock" && c === "paper"){win = "Computer"; cscore++;}
+    else if(p === "rock" && c === "scissors"){win = "Player"; pscore++;}
+    else if(p === "paper" && c === "rock"){win = "Player"; pscore++;}
+    else if(p === "paper" && c === "scissors"){win = "Computer"; cscore++;}
+    else if(p === "scissors" && c === "paper"){win = "Player"; pscore++;}
+    else if(p === "scissors" && c === "rock"){win = "Computer"; cscore++;}
+    else{win = undefined}
+}
+
+</script>
 </body>
 </html>
