@@ -12,7 +12,8 @@ let win
 let pscore = 0
 let cscore = 0
 let maxrounds = 5
-
+const choices = ["rock", "paper", "scissors"]
+let playerchoice
 
 console.log("Welcome to a game of Rock-Paper-Scissors!\nGame Mode: 5 Rounds.")
 
@@ -20,7 +21,13 @@ console.log("Welcome to a game of Rock-Paper-Scissors!\nGame Mode: 5 Rounds.")
 for(let i = 1; i < maxrounds+1; i++){
     console.log("\nRound:"+i)
     if(i === maxrounds){console.log("Final Round!")}
-    let playerchoice = prompt("Make your choice.").toLowerCase()
+
+    playerchoice = prompt("Make your choice.\nChoose Rock, Paper, or Scissors").toLowerCase()
+    while (choices.find(validate) === undefined){
+        alert("Please enter a proper choice!")
+        playerchoice = prompt("Make your choice.\nChoose Rock, Paper, or Scissors").toLowerCase()       
+    }
+    
     play(playerchoice, getComputerChoice())
 
     if(win != undefined && win != "none"){
@@ -36,9 +43,11 @@ for(let i = 1; i < maxrounds+1; i++){
         else{console.log("\nUhh?")}
     }
 }
-
+//prompt("Make your choice.\nChoose Rock, Paper, or Scissors").toLowerCase()
+function validate(currentValue, index, arr){
+    return currentValue === playerchoice
+}
 function getComputerChoice(){
-   let choices = ["rock", "paper", "scissors"]
    let index = Math.floor(Math.random()*choices.length)
    return choices[index]
 }
