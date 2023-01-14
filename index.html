@@ -27,6 +27,8 @@ for(let i = 1; i < maxrounds+1; i++){
         console.log(win+" has won this round!")
     }else if(win === "none"){console.log("This round ended in a tie!")}
 
+    console.log(`Current Score:\nPlayer:${pscore}\nComputer:${cscore}`)
+
     if(i === 5){
         if(pscore === cscore){console.log("\nThe game ended in a tie!")}
         else if(pscore > cscore){console.log("\nPlayer has won the game!")}
